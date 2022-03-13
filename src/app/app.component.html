@@ -1,7 +1,18 @@
 <!--Container for navbar-->
 <app-navbar></app-navbar>
 
-<!--Container for wellcome to the application-->
-<ng-container>
-    <app-login></app-login>
+<!--Container for wellcome to the application new users-->
+<ng-container *ngIf="true">
+    <div class="container mt-5">
+        <h1 class="text-center">Wellcome to <strong>To Do - Never Late</strong></h1>
+        <p class="text-center">It looks like you don't have an account <strong>log in</strong> or <strong>sign up</strong> bellow.</p>
+        <p class="text-muted text-center">If you don't have an account, it will be created automatically</p>
+        <app-login></app-login>
+    </div>
 </ng-container>
+
+<!--Container for wellcome to the application existing users-->
+<ng-container *ngIf="false">
+    This will display to dos
+</ng-container>
+
