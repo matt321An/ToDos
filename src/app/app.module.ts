@@ -10,6 +10,10 @@ import { TextInputComponent } from './components/text-input/text-input.component
 import { LoginComponent } from './components/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ListTodoComponent } from './components/list-todo/list-todo.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AboutComponent } from './components/about/about.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +21,10 @@ import { CommonModule } from '@angular/common';
     NavbarComponent,
     TextInputComponent,
     LoginComponent,
+    ListTodoComponent,
+    RegisterComponent,
+    AboutComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
