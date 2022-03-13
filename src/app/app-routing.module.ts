@@ -6,13 +6,15 @@ import { HomeComponent } from './components/home/home.component';
 import { ListTodoComponent } from './components/list-todo/list-todo.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component:RegisterComponent},
-  {path: 'list', component: ListTodoComponent},
+  {path: 'todos', component: ListTodoComponent},
   {path: 'about', component: AboutComponent},
+  {path: 'todos/:id', component: TodoItemComponent},
   {path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 

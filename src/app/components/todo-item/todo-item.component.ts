@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-list-todo',
-  templateUrl: './list-todo.component.html',
-  styleUrls: ['./list-todo.component.css']
+  selector: 'app-todo-item',
+  templateUrl: './todo-item.component.html',
+  styleUrls: ['./todo-item.component.css']
 })
-export class ListTodoComponent implements OnInit {
+export class TodoItemComponent implements OnInit {
   todoCardList = [
     {
       id: 0,
@@ -41,13 +43,66 @@ export class ListTodoComponent implements OnInit {
       ]
     }
   ];
-  constructor() { }
+  todoForm: FormGroup;
+  todoCard: any;
+  todoItemId: number;
+  date: any;
+  isImportant = false;
+
+  constructor(private activatedRoute: ActivatedRoute, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
+    this.todoItemId = +this.activatedRoute.snapshot.paramMap.get('id');
+    this.loadTodoCard();
+    this.createTodoForm();
+  }
+
+  createTodoForm() {
+    this.todoForm = this.fb.group({
+      title: new FormControl(null, [Validators.required]),
+      date: new FormControl(null),
+      important: new FormControl(null)
+    });
+  }
+
+  onSubmit() {
+    if(this.date) {
+      this.todoForm.get('date').setValue(this.date);
+    }
+    this.todoForm.get('important').setValue(this.isImportant);
+    var index = this.todoCard.toDoItem.length;
+    const newTodoItem = {
+      id: index,
+      title: this.todoForm.get('title').value,
+      date: this.todoForm.get('date').value,
+      important: this.todoForm.get('important').value,
+      check: false
+    }
+
+    this.todoCard.toDoItem.push(newTodoItem);
+
+    console.log(this.todoForm.value);
+    this.todoForm.reset();
+    this.date = null;
+    this.isImportant = false;
+  }
+
+  onDatePicked(value: Date) {
+    this.date = value.toDateString();
+    console.log(this.date);
+  }
+
+  toggleIsImportantAttributeTodoForm() {
+    this.isImportant = !this.isImportant;
+  }
+
+  loadTodoCard() {
+    this.todoCard = this.todoCardList[this.todoItemId];
+    console.log(this.todoCard);
   }
 
   changeCheckAttribute(todoCardId: number, todoItemId: number) {
-    this.todoCardList[todoCardId].toDoItem[todoItemId].check = 
+    this.todoCardList[todoCardId].toDoItem[todoItemId].check =
       !this.todoCardList[todoCardId].toDoItem[todoItemId].check;
   }
 
@@ -62,8 +117,7 @@ export class ListTodoComponent implements OnInit {
 
   deleteTodoCard(todoCardId: number) {
     delete this.todoCardList[todoCardId];
-    
+    this.loadTodoCard();
   }
-
 
 }

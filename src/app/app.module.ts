@@ -15,6 +15,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TodoItemComponent } from './components/todo-item/todo-item.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     RegisterComponent,
     AboutComponent,
     HomeComponent,
+    TodoItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     CollapseModule.forRoot(),
     ReactiveFormsModule,
     CommonModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    BsDatepickerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

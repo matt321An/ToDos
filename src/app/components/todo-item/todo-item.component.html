@@ -1,0 +1,72 @@
+<div class="container mt-5">
+    <div *ngIf="todoCard" class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header bg-dark py-3">
+                <h4 class="my-0 fw-normal" style="color: white;">
+                    {{todoCard.title}}
+                    <i (click)="deleteTodoCard(todoCard.id)" tooltip="Remove" placement="auto" 
+                        container="body" style="color:rgb(209, 28, 28); float: right; cursor: pointer;" class="fa fa-trash"></i>
+                </h4>
+
+            </div>
+            <div class="card-body">
+                <div style="overflow-y: scroll; max-height: 400px;">
+                    <ul *ngFor="let todo of todoCard.toDoItem" class="list-unstyled mt-3 mb-4">
+                        <li *ngIf="todo" style="text-align: left;" class="zoom card-header shadow-sm px-1">
+                            
+                            <i (click)="changeCheckAttribute(todoCard.id, todo.id)" *ngIf="todo.check" style="color:#007bff; cursor: pointer;" 
+                                class="fa fa-check-square-o mr-1"></i>
+                            <i (click)="changeCheckAttribute(todoCard.id, todo.id)" *ngIf="!todo.check" style="cursor: pointer;" 
+                                class="fa fa-square-o mr-1"></i>
+                            <span [ngStyle]="{'text-decoration': todo.check ? 'line-through' : ''}">{{todo.title}}</span>
+                            
+                            <i (click)="changeImportantAttribute(todoCard.id, todo.id)" tooltip="Remove from important" 
+                                placement="auto" container="body" *ngIf="todo.important" 
+                                style="color: rgb(206, 206, 0); float: right; cursor: pointer;" class="fa fa-star"></i>
+    
+                            <i (click)="changeImportantAttribute(todoCard.id, todo.id)" tooltip="Add to important"
+                                placement="auto" container="body" *ngIf="!todo.important" 
+                                style="float: right; cursor: pointer;" class="fa fa-star-o"></i>
+    
+                            <div>
+                                <i *ngIf="todo.date" class="fa fa-calendar-check-o mr-1"></i>{{todo.date}}
+                                <i (click)="deleteTodoItem(todoCard.id, todo.id)" tooltip="Remove" placement="auto" 
+                                    container="body" style="color:rgb(209, 28, 28); float: right; cursor: pointer;" class="fa fa-trash"></i>
+                            </div>
+                            
+    
+                        </li>
+                    </ul>
+                </div>
+                <form [formGroup]="todoForm" (ngSubmit)="onSubmit()" autocomplete="off" class="form">
+                    <app-text-input formControlName="title" [label]="'Add New To Do'"></app-text-input>
+                    <!--Container for date picker-->
+                    <div>
+                        <span style="display: table; margin: 0 auto" bsDatepicker #dp="bsDatepicker" placement="top" (bsValueChange)="onDatePicked($event)"></span>
+                    </div>
+                    <div class="btn-group d-flex" role="group" aria-label="Justified button group">
+                        <button type="button" class="btn btn-outline-dark mr-2" 
+                            (click)="toggleIsImportantAttributeTodoForm()">
+                            <i *ngIf="isImportant" style="color:rgb(206, 206, 0)" class="fa fa-star fa-2x"></i>
+                            <i *ngIf="!isImportant" class="fa fa-star-o fa-2x"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-outline-success mr-2" 
+                            (click)="dp.toggle()">
+                            <i class="fa fa-calendar fa-2x"></i>
+                        </button> 
+
+                        <button type="submit" class="btn btn-dark" >
+                            <i class="fa fa-plus fa-2x"></i>
+                        </button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <h1 *ngIf="!todoCard">You deleted this To Do list, create a new one <a routerLink="/todos">here</a>.</h1>
+</div>
