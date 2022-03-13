@@ -14,6 +14,7 @@ import { ListTodoComponent } from './components/list-todo/list-todo.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { HomeComponent } from './components/home/home.component';
     BrowserAnimationsModule,
     CollapseModule.forRoot(),
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    TooltipModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

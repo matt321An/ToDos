@@ -18,10 +18,13 @@
                                 class="fa fa-square-o mr-1"></i>
                             <span [ngStyle]="{'text-decoration': todo.check ? 'line-through' : ''}">{{todo.title}}</span>
                             
-                            <i (click)="changeImportantAttribute(item.id, todo.id)" 
-                                *ngIf="todo.important" style="color: rgb(206, 206, 0); float: right; cursor: pointer;" class="fa fa-star"></i>
-                            <i (click)="changeImportantAttribute(item.id, todo.id)" 
-                                *ngIf="!todo.important" style="float: right; cursor: pointer;" class="fa fa-star-o"></i>
+                            <i (click)="changeImportantAttribute(item.id, todo.id)" tooltip="Remove from important" 
+                                placement="auto" container="body" *ngIf="todo.important" 
+                                style="color: rgb(206, 206, 0); float: right; cursor: pointer;" class="fa fa-star"></i>
+
+                            <i (click)="changeImportantAttribute(item.id, todo.id)" tooltip="Add to important"
+                                placement="auto" container="body" *ngIf="!todo.important" 
+                                style="float: right; cursor: pointer;" class="fa fa-star-o"></i>
 
                             <div *ngIf="todo.date">
                                 <i class="fa fa-calendar-check-o mr-1"></i>{{todo.date}}
