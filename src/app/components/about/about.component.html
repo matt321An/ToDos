@@ -1,1 +1,69 @@
-<p>about works!</p>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h1 class="text-lg-left text-center">About us</h1>
+        </div>
+        <div class="card-body">
+            <p>
+                This is a web application that resembles a To Do application like <a
+                    href="https://todo.microsoft.com/tasks/">Microsoft To Do.</a>
+                For the front-end I used angular and different angular components and for the back-end, I used .NET 6.
+                Bellow I will do a little
+                guide through out the application also responding to popular questions. <br>Enjoy the application and
+                thank you for taking your
+                time to browse my wep application.
+            </p>
+        </div>
+
+    </div>
+
+    <accordion [isAnimated]="true" class="mt-3 text-decoration-none">
+        <accordion-group heading="What is the application about?">
+            <p>
+                This application is a space where users who have an account can make their to do lists, groceries lists, set up various goals
+                and many more... <br>
+                They can individualy set for each to do item a due date, a yellow star if the to do item it's important, or to check/uncheck
+                the item when that particular item it's done.
+            </p>
+        </accordion-group>
+        <accordion-group heading="What you need to register?">
+            <p>
+                To register to this application you need a valid email address (you can only have one account per email address), choose a 
+                display name and a strong password (example of strong password: Pa$$w0rd).
+            </p>
+        </accordion-group>
+        <accordion-group heading="Basic controls inside the application">
+            <p>Let's talk a little bit about the basic functionalities of the application:</p>
+            <ul>
+                <li>
+                    Click on your name (top right corner) to log out of the application.
+                </li>
+                <li>
+                    <i style="color: #087cfc" class="fa fa-plus"></i> Click the plus icon to add a new to do card
+                </li>
+                <li>
+                    <i style="color: red" class="fa fa-trash"></i> Click the trash icon to delete either the to do card or a 
+                    single to do item
+                </li>
+                <li>
+                    <i class="fa fa-star-o"></i> Click the star in order to make a to do item important (if the star is yellow, the item
+                    is marked as important).
+                </li>
+                <li>
+                    <i class="fa fa-square-o"></i> Click the square icon to mark a to do as done (if the square has a check inside it, the item
+                    is marked as done).
+                </li>
+            </ul>
+        </accordion-group>
+        <accordion-group heading="How to edit to do cards or to do items?">
+            <p>
+                In order to edit a to do card you have to click on the title you want to edit, at the end press this icon to save your edits
+                <i class="fa fa-floppy-o"></i>  If you want to edit a to do item, just click on it and start to edit, when you click out of 
+                the edit box it will save automatically.
+            </p>
+        </accordion-group>
+        <accordion-group class="mt-3" routerLink="/" heading="This all you need to know, now go and try the application!">
+        </accordion-group>
+    </accordion>
+
+</div>

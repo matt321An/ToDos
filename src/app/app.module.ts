@@ -17,6 +17,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     ReactiveFormsModule,
     CommonModule,
     TooltipModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
