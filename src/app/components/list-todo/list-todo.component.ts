@@ -81,5 +81,17 @@ export class ListTodoComponent implements OnInit {
     this.editedTitle = value;
   }
 
+  newTodoCard() {
+    var index = this.todoCardList.length;
+    const todoCard = {
+      id: index,
+      title: "Insert title",
+      important: false,
+      toDoItem: []
+    };
+
+    this.todoCardList.push(todoCard);
+  }
+
 
 }
