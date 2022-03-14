@@ -41,6 +41,8 @@ export class ListTodoComponent implements OnInit {
       ]
     }
   ];
+  editedTitle: string;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -63,6 +65,20 @@ export class ListTodoComponent implements OnInit {
   deleteTodoCard(todoCardId: number) {
     delete this.todoCardList[todoCardId];
     
+  }
+
+  saveEditTitle(id: number) {
+    if(this.editedTitle) {
+      // Remove everythign after <div> or &nbsp or <br>
+      this.todoCardList[id].title = this.editedTitle;
+    }
+    console.log(this.todoCardList[id].title);
+  }
+
+  onTitleChange(value: string) {
+    
+    console.log("change" + value);
+    this.editedTitle = value;
   }
 
 

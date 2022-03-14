@@ -18,7 +18,9 @@
                                 class="fa fa-check-square-o mr-1"></i>
                             <i (click)="changeCheckAttribute(todoCard.id, todo.id)" *ngIf="!todo.check" style="cursor: pointer;" 
                                 class="fa fa-square-o mr-1"></i>
-                            <span [ngStyle]="{'text-decoration': todo.check ? 'line-through' : ''}">{{todo.title}}</span>
+                            <span (focusout)="saveEditsOnTitle(todo.id)" (input)="onTitleChange($event.target.innerHTML)"  
+                                contenteditable="true" style="display: inline-block;" 
+                                [ngStyle]="{'text-decoration': todo.check ? 'line-through' : ''}">{{todo.title}}</span>
                             
                             <i (click)="changeImportantAttribute(todoCard.id, todo.id)" tooltip="Remove from important" 
                                 placement="auto" container="body" *ngIf="todo.important" 
@@ -64,6 +66,14 @@
                 </form>
             </div>
         </div>
+        
+        <!-- Example for absolute button -->
+        <!--div class="row">
+            <div class="col-12">
+                <input type="text" class="form-control">
+                <button style="position: absolute; top:0px; right: 15px" class="btn btn-success"><i class="fa fa-plus"></i></button>
+            </div>
+        </div-->
         
 
     </div>

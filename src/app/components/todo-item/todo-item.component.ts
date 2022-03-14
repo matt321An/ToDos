@@ -48,6 +48,7 @@ export class TodoItemComponent implements OnInit {
   todoItemId: number;
   date: any;
   isImportant = false;
+  editedTitle: string;
 
   constructor(private activatedRoute: ActivatedRoute, private fb: FormBuilder, private router: Router) { }
 
@@ -118,6 +119,17 @@ export class TodoItemComponent implements OnInit {
   deleteTodoCard(todoCardId: number) {
     delete this.todoCardList[todoCardId];
     this.loadTodoCard();
+  }
+
+  onTitleChange(value: string) {
+    this.editedTitle = value;
+  }
+
+  saveEditsOnTitle(id: number) {
+    console.log(id);
+    if(this.editedTitle) {
+      this.todoCardList[this.todoItemId].toDoItem[id].title = this.editedTitle;
+    }
   }
 
 }
