@@ -18,7 +18,7 @@
                         style="text-align:left; color: white; display: inline-block;">
                         {{item.title}}
                     </h4>
-                    <i (click)="saveEditTitle(item.id)" 
+                    <i (click)="updateTodoCardTitle(item)" 
                         class="fa fa-floppy-o" style="cursor:pointer; color: white; position:absolute; top: 25px; left: 10px"></i>
                     <i (click)="deleteTodoCard(item.id)" tooltip="Remove" placement="auto" 
                         container="body" style="color:rgb(209, 28, 28); position: absolute; cursor: pointer; top: 25px; right: 10px" 

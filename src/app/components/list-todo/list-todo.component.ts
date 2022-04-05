@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { TodoCardService } from 'src/app/_services/todo-card.service';
+import { TodoCard } from 'src/app/_models/todoCard';
+import { errorMonitor } from 'events';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-list-todo',
@@ -6,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-todo.component.css']
 })
 export class ListTodoComponent implements OnInit {
-  todoCardList = [
+  /*todoCardList = [
     {
       id: 0,
       title: "School",
@@ -40,14 +47,65 @@ export class ListTodoComponent implements OnInit {
         { id: 5, title: "Sugar", date: "", important: true, check: false },
       ]
     }
-  ];
-  editedTitle: string;
+  ];*/
 
-  constructor() { }
+  editedTitle: string;
+  todoCardList: TodoCard[] = [];
+
+  constructor(private todoCardService: TodoCardService) { }
 
   ngOnInit(): void {
+    this.getTodoCards();
   }
 
+  getTodoCards() {
+    this.todoCardService.getTodoCards().subscribe(cards => {
+      this.todoCardList = cards;
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  newTodoCard() {
+    let card = new TodoCard(1, "");
+    this.todoCardService.addTodoCard(card).subscribe(() => {
+      console.log("Todo Card added");
+      this.getTodoCards();
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  deleteTodoCard(id: number) {
+    this.todoCardService.deleteTodoCard(id).subscribe(() => {
+      console.log("Todo card deleted");
+      this.getTodoCards();
+    }, error => {
+      console.log(error);
+    })
+  }
+
+  updateTodoCardTitle(card: TodoCard) {
+    if(this.editedTitle) {
+
+      card.title = this.editedTitle;
+      this.todoCardService.updateTodoCard(card).subscribe(() => {
+        console.log("Todo card updated");
+        this.getTodoCards();
+        
+      }, error => {
+        console.log(error)
+      })
+
+    }
+  }
+
+  onTitleChange(value: string) {
+    console.log("change" + value);
+    this.editedTitle = value;
+  }
+
+  /*
   changeCheckAttribute(todoCardId: number, todoItemId: number) {
     this.todoCardList[todoCardId].toDoItem[todoItemId].check = 
       !this.todoCardList[todoCardId].toDoItem[todoItemId].check;
@@ -64,7 +122,6 @@ export class ListTodoComponent implements OnInit {
 
   deleteTodoCard(todoCardId: number) {
     delete this.todoCardList[todoCardId];
-    
   }
 
   saveEditTitle(id: number) {
@@ -75,11 +132,7 @@ export class ListTodoComponent implements OnInit {
     console.log(this.todoCardList[id].title);
   }
 
-  onTitleChange(value: string) {
-    
-    console.log("change" + value);
-    this.editedTitle = value;
-  }
+  
 
   newTodoCard() {
     var index = this.todoCardList.length;
@@ -92,6 +145,8 @@ export class ListTodoComponent implements OnInit {
 
     this.todoCardList.push(todoCard);
   }
+  */
+
 
 
 }

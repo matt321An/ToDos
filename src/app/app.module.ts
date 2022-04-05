@@ -18,6 +18,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
     CommonModule,
     TooltipModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
